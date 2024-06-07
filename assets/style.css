@@ -9,7 +9,7 @@
     height: 100%;
     object-fit: cover; 
     object-position: center; 
-    transform: translateY(-15%);
+    /* transform: translateY(-15%); */
 
 }
 .carousel::after {
