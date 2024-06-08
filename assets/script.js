@@ -32,33 +32,87 @@ async function fetchTopTrendingAnime() {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
-        const animeList = data.data.Page.media;
-
-        animeList.forEach((anime, index) => {
-            const carouselItem = document.createElement('div');
-            carouselItem.classList.add('carousel-item');
-            if (index === 0) carouselItem.classList.add('active');
-
-            const img = document.createElement('img');
-            img.classList.add('d-block');
-            img.classList.add('w-100');
-            img.src = anime.coverImage.large;
-            img.alt = anime.title.english || anime.title.romaji || anime.title.native;
-            console.log(img.src)
-
-            const carouselContent = document.createElement('div');
-            carouselContent.classList.add('carousel-content');
-            carouselContent.innerHTML = `<h1 class="carousel-title">${anime.title.english || anime.title.romaji || anime.title.native}</h1>`;
-
-            carouselItem.appendChild(img);
-            carouselItem.appendChild(carouselContent);
-
-            document.getElementById('anime-list').appendChild(carouselItem);
-        });
+        displayTopTrendingAnime(data.data.Page.media);
     } catch (error) {
         console.error('Error fetching top trending anime:', error);
     }
 }
 
+function displayTopTrendingAnime(animeList) {
+    const animeListDiv = document.getElementById('anime-list');
+    animeListDiv.innerHTML = ''; // Очистить предыдущие результаты
+    animeList.forEach(anime => {
+        const animeDiv = document.createElement('div');
+        animeDiv.classList.add('anime');
+        
+        const image = document.createElement('img');
+        image.src = anime.coverImage.large;
+        image.alt = anime.title.english || anime.title.romaji || anime.title.native;
+
+        const detailsDiv = document.createElement('div');
+        detailsDiv.classList.add('anime-details');
+        
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('title');
+        titleDiv.textContent = anime.title.english || anime.title.romaji || anime.title.native;
+        
+        const scoreDiv = document.createElement('div');
+        scoreDiv.classList.add('score');
+        scoreDiv.textContent = `Score: ${anime.meanScore}, Popularity: ${anime.popularity}`;
+
+        detailsDiv.appendChild(titleDiv);
+        // detailsDiv.appendChild(scoreDiv);
+
+        animeDiv.appendChild(image);
+        animeDiv.appendChild(detailsDiv);
+
+        animeListDiv.appendChild(animeDiv);
+    });
+}
+
 // Вызов функции для получения топа аниме по трендам
 fetchTopTrendingAnime();
+
+
+const animeCarousel = document.querySelector(".anime-list");
+const animeScroll = document.querySelector(".scroll-bar")
+
+let isDragStart = false, prevPageX, prevScrollLeft;
+
+function draggingStart(e){
+    isDragStart = true;
+    prevPageX = e.pageX;
+    prevScrollLeft = animeCarousel.scrollLeft;
+}
+
+function dragging(e){
+    if(!isDragStart) return;
+    e.preventDefault();
+    let positionDiff = e.pageX - prevPageX;
+    animeCarousel.scrollLeft = prevScrollLeft - positionDiff;
+    scrollDrag()
+}
+
+function scrollDrag() {
+    let scrollPercentage = animeCarousel.scrollLeft / (animeCarousel.scrollWidth - animeCarousel.clientWidth);
+    let scrollPosition = scrollPercentage * (animeCarousel.clientWidth - animeScroll.clientWidth);
+
+    
+    animeScroll.style.left = `${scrollPosition}px`;
+    console.log(scrollPosition)
+}
+
+function draggingStop(){
+    isDragStart = false;
+}
+
+animeCarousel.addEventListener("mousedown", draggingStart)
+animeCarousel.addEventListener("mousemove", dragging)
+animeCarousel.addEventListener("mouseup", draggingStop)
+
+animeScroll.addEventListener("mousedown", (e) => {
+    isDragStart = true;
+    prevPageX = e.pageX;
+    prevScrollLeft = animeCarousel.scrollLeft;
+});
+
