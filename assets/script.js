@@ -75,7 +75,8 @@ fetchTopTrendingAnime();
 
 
 const animeCarousel = document.querySelector(".anime-list");
-const animeScroll = document.querySelector(".scroll-bar")
+const animeScroll = document.querySelector(".scroll-bar");
+const scrollbarWrapper = document.querySelector(".scrollbar-wrapper");
 
 let isDragStart = false, prevPageX, prevScrollLeft;
 
@@ -94,12 +95,17 @@ function dragging(e){
 }
 
 function scrollDrag() {
-    let scrollPercentage = animeCarousel.scrollLeft / (animeCarousel.scrollWidth - animeCarousel.clientWidth);
-    let scrollPosition = scrollPercentage * (animeCarousel.clientWidth - animeScroll.clientWidth);
+    const maxScrollLeft = animeCarousel.scrollWidth - animeCarousel.clientWidth;
+    const maxScrollbarLeft = scrollbarWrapper.clientWidth - animeScroll.clientWidth;
 
+    let scrollPercentage = animeCarousel.scrollLeft / maxScrollLeft;
+    let scrollPosition = scrollPercentage * maxScrollbarLeft;
+
+    // Ensure the scrollbar does not exceed bounds
+    scrollPosition = Math.max(0, Math.min(scrollPosition, maxScrollbarLeft));
     
     animeScroll.style.left = `${scrollPosition}px`;
-    console.log(scrollPosition)
+    console.log(scrollPosition);
 }
 
 function draggingStop(){

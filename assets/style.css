@@ -1,4 +1,7 @@
 @import url(reset.css);
+body{
+    overflow-x: hidden;
+}
 .carousel {
     width: 100vw; 
     height: 40vw; 
@@ -123,7 +126,7 @@
     top: 0;
     left: 0;
     height: 4px;
-    width: 100px;
+    width: 10%;
     background-color: blue;
     position: absolute;
     border-radius: 10px;
