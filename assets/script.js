@@ -44,7 +44,11 @@ function displayTopTrendingAnime(animeList) {
     animeList.forEach(anime => {
         const animeDiv = document.createElement('div');
         animeDiv.classList.add('anime');
-        
+
+        const animeLink = document.createElement('a');
+        animeLink.href = `https://anilist.co/anime/${anime.id}`; 
+        animeLink.classList.add('anime-link'); 
+
         const image = document.createElement('img');
         image.src = anime.coverImage.large;
         image.alt = anime.title.english || anime.title.romaji || anime.title.native;
@@ -63,10 +67,18 @@ function displayTopTrendingAnime(animeList) {
         detailsDiv.appendChild(titleDiv);
         // detailsDiv.appendChild(scoreDiv);
 
-        animeDiv.appendChild(image);
-        animeDiv.appendChild(detailsDiv);
+        animeLink.appendChild(image);
+        animeLink.appendChild(detailsDiv);
 
+        animeDiv.appendChild(animeLink);
         animeListDiv.appendChild(animeDiv);
+
+        // Prevent link click if dragging
+        animeLink.addEventListener('click', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+            }
+        });
     });
 }
 
@@ -78,20 +90,41 @@ const animeCarousel = document.querySelector(".anime-list");
 const animeScroll = document.querySelector(".scroll-bar");
 const scrollbarWrapper = document.querySelector(".scrollbar-wrapper");
 
-let isDragStart = false, prevPageX, prevScrollLeft;
+let isDragStart = false, isDragging = false, isScrollbarDragStart = false, prevPageX, prevScrollLeft, scrollbarPrevPageX;
 
-function draggingStart(e){
+function draggingStart(e) {
+    // e.preventDefault(); 
     isDragStart = true;
     prevPageX = e.pageX;
     prevScrollLeft = animeCarousel.scrollLeft;
 }
 
-function dragging(e){
-    if(!isDragStart) return;
+function dragging(e) {
+    if (!isDragStart) return;
     e.preventDefault();
+    isDragging = true;
     let positionDiff = e.pageX - prevPageX;
     animeCarousel.scrollLeft = prevScrollLeft - positionDiff;
-    scrollDrag()
+    scrollDrag();
+}
+
+function scrollbarDraggingStart(e) {
+    // e.preventDefault(); 
+    isScrollbarDragStart = true;
+    scrollbarPrevPageX = e.pageX;
+}
+
+function scrollbarDragging(e) {
+    if (!isScrollbarDragStart) return;
+    e.preventDefault();
+    let scrollbarPositionDiff = e.pageX - scrollbarPrevPageX;
+    const maxScrollLeft = animeCarousel.scrollWidth - animeCarousel.clientWidth;
+    const maxScrollbarLeft = scrollbarWrapper.clientWidth - animeScroll.clientWidth;
+
+    let newScrollLeft = (scrollbarPositionDiff / maxScrollbarLeft) * maxScrollLeft;
+    animeCarousel.scrollLeft += newScrollLeft;
+    scrollbarPrevPageX = e.pageX;
+    scrollDrag();
 }
 
 function scrollDrag() {
@@ -108,17 +141,19 @@ function scrollDrag() {
     console.log(scrollPosition);
 }
 
-function draggingStop(){
+function draggingStop() {
     isDragStart = false;
+    isScrollbarDragStart = false;
+    // setTimeout(() => isDragging = false, 0); 
 }
 
-animeCarousel.addEventListener("mousedown", draggingStart)
-animeCarousel.addEventListener("mousemove", dragging)
-animeCarousel.addEventListener("mouseup", draggingStop)
+animeCarousel.addEventListener("mousedown", draggingStart);
+animeCarousel.addEventListener("mousemove", dragging);
+animeCarousel.addEventListener("mouseup", draggingStop);
+animeCarousel.addEventListener("mouseleave", draggingStop);
 
-animeScroll.addEventListener("mousedown", (e) => {
-    isDragStart = true;
-    prevPageX = e.pageX;
-    prevScrollLeft = animeCarousel.scrollLeft;
-});
+animeScroll.addEventListener("mousedown", scrollbarDraggingStart);
+window.addEventListener("mousemove", scrollbarDragging);
+window.addEventListener("mouseup", draggingStop);
+window.addEventListener("mouseleave", draggingStop);
 
