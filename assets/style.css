@@ -1,7 +1,26 @@
 @import url(reset.css);
+/* html{
+    scrollbar-width: thin;
+} */
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f11d; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
 body{
     font-family: "Montserrat", sans-serif;
 }
+
 
 /* header */
 .header-contain{
@@ -12,6 +31,9 @@ body{
     display: flex;
     width: 100vw;
     justify-content: space-between;
+    background-color: none;
+    transition: background-color 0.3s ease;
+    padding-bottom: 20px;
 }
 .header-title{
     font-weight: 700;
@@ -30,15 +52,24 @@ body{
     height: 37px;
     border-radius: 12px;
     background-color: #ffff;
-    color: black;
-}
-
-.header-list-2 input::placeholder{
+    color: #8D9FC2;
+    background-image: url(Images/searcher.png);
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
     padding-left: 10px;
 }
 
+.header-list-2 input::placeholder{
+    color: #8D9FC2;
+}
+
+.header-contain.scrolled {
+    background-color: rgba(0, 0, 0, 0.8); 
+    transition: background-color 0.3s ease;
+
+}
 .login{
-    margin-right: 60px;
+    margin-right: 70px;
     padding: 8px 16px;
     background: #8D9FC2;
     border-radius: 8px;
@@ -51,6 +82,7 @@ body{
 .container-1{
     padding: 10px 60px 10px 60px;
 }
+/* carousel */
 .carousel {
     width: 100%; 
     height: 40vw; 
@@ -92,12 +124,84 @@ body{
 .carousel-content{
     color: white;
     position: absolute;
-    top: 0;
+    top: 200px;
     left: 0;
+    z-index: 1;
 }
 .carousel-content h1{
     font-size: 56px;
 }
+
+/* carousel-inf */
+
+.spotlight{
+    font-size: 28px;
+    font-weight: 700;
+}
+.carousel-title{
+    font-size: 56px;
+    font-weight: 700;
+}
+.three-inf-boxes{
+    width: fit-content;
+    height: 26px;
+    background-color: #8D9FC2;
+    border-radius: 8px;
+    display: flex;
+    padding: 0 5px;
+    gap: 2px;
+    align-items: center;
+}
+.anime-inf-element{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.anime-inf-element img, .three-inf-boxes img{
+    position: relative;
+    top: 2px;
+}
+.anime-inf-list{
+    display: flex;
+    gap: 20px;
+}
+
+.main-slider-anime-information-list img{
+    width: 16px;
+    height: 16px;
+}
+
+.carousel-content h1,h2{
+    margin-bottom: 25px;
+}
+.watch-button{
+    background-color: #8D9FC2;
+    width: 122px;
+    height: 36px;
+    color: black;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    border-radius: 8px;
+    justify-content: center ;
+    position: relative;
+    margin-top: 20px;
+}
+.watch-button img{
+    position: relative;
+    top: 5%;
+}
+.three-box{
+    display: flex;
+    gap: 5px;
+}
+.anime-slider-desk{
+    font-size: 14px;
+    max-width: 770px;
+}
+
 
 /* .wrapper{
     position: relative;
@@ -182,12 +286,12 @@ body{
 .scroll-menu{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 .scrollbar-wrapper{
     position: relative;
     background-color: black;
-    width: 90%;
+    width: 95%;
     height: 5px;
     border-radius: 10px;
     top: 4px;
@@ -211,5 +315,6 @@ body{
 
 .chevron{
     transform: scale(200%);
-    margin: auto;
+    cursor: pointer;
+    user-select: none;
 }

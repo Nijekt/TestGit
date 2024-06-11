@@ -1,3 +1,14 @@
+const header = document.querySelector('.header-contain');
+
+window.addEventListener("scroll", function(){
+    if (window.scrollY > 10) {
+        header.classList.add("scrolled")
+    }
+    else {
+        header.classList.remove('scrolled');
+      }
+})
+
 async function fetchTopTrendingAnime() {
     const query = `
         query {
@@ -14,6 +25,7 @@ async function fetchTopTrendingAnime() {
                     coverImage {
                         large
                     }
+                    genres
                 }
             }
         }
@@ -179,5 +191,4 @@ nextButton.addEventListener('click', () => {
     animeCarousel.scrollBy({ left: animeWidth, behavior: 'smooth' }); // Scroll forward by one image width
 
 });
-
 
