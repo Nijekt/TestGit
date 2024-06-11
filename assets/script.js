@@ -46,8 +46,8 @@ function displayTopTrendingAnime(animeList) {
         animeDiv.classList.add('anime');
 
         const animeLink = document.createElement('a');
-        animeLink.href = `https://anilist.co/anime/${anime.id}`; 
-        animeLink.classList.add('anime-link'); 
+        animeLink.href = `https://anilist.co/anime/${anime.id}`; // Предполагается, что у вас есть ID аниме
+        animeLink.classList.add('anime-link'); // Добавьте класс для управления стилями ссылок
 
         const image = document.createElement('img');
         image.src = anime.coverImage.large;
@@ -89,11 +89,13 @@ fetchTopTrendingAnime();
 const animeCarousel = document.querySelector(".anime-list");
 const animeScroll = document.querySelector(".scroll-bar");
 const scrollbarWrapper = document.querySelector(".scrollbar-wrapper");
+const prevButton = document.querySelector('.anime-car-prev');
+const nextButton = document.querySelector('.anime-car-next');
 
 let isDragStart = false, isDragging = false, isScrollbarDragStart = false, prevPageX, prevScrollLeft, scrollbarPrevPageX;
 
 function draggingStart(e) {
-    // e.preventDefault(); 
+    e.preventDefault(); // Prevent default behavior
     isDragStart = true;
     prevPageX = e.pageX;
     prevScrollLeft = animeCarousel.scrollLeft;
@@ -109,7 +111,7 @@ function dragging(e) {
 }
 
 function scrollbarDraggingStart(e) {
-    // e.preventDefault(); 
+    e.preventDefault(); // Prevent default behavior
     isScrollbarDragStart = true;
     scrollbarPrevPageX = e.pageX;
 }
@@ -144,7 +146,7 @@ function scrollDrag() {
 function draggingStop() {
     isDragStart = false;
     isScrollbarDragStart = false;
-    // setTimeout(() => isDragging = false, 0); 
+    setTimeout(() => isDragging = false, 0); // Delay resetting isDragging to capture click event if not dragging
 }
 
 animeCarousel.addEventListener("mousedown", draggingStart);
@@ -156,4 +158,26 @@ animeScroll.addEventListener("mousedown", scrollbarDraggingStart);
 window.addEventListener("mousemove", scrollbarDragging);
 window.addEventListener("mouseup", draggingStop);
 window.addEventListener("mouseleave", draggingStop);
+
+
+animeCarousel.addEventListener('scroll', scrollDrag);
+
+function getAnimeWidth() {
+    const animeElement = document.querySelector('.anime');
+    return animeElement ? animeElement.clientWidth : 230; // Default to 230px if no element found
+}
+
+prevButton.addEventListener('click', () => {
+    console.log("Hello")
+    const animeWidth = getAnimeWidth();
+    animeCarousel.scrollBy({ left: -animeWidth, behavior: 'smooth' }); // Scroll back by one image width
+
+});
+
+nextButton.addEventListener('click', () => {
+    const animeWidth = getAnimeWidth();
+    animeCarousel.scrollBy({ left: animeWidth, behavior: 'smooth' }); // Scroll forward by one image width
+
+});
+
 
