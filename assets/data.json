@@ -19,7 +19,7 @@
         "watchButtonText": "Watch now"
     },
     {
-        "imgSrc": "assets/Images/My hero academy.jpg",
+        "imgSrc": "assets/Images/My hero akademy.jpg",
         "altText": "Second slide",
         "spotlight": "Spotlight #2",
         "title": "My Hero Academia Season 7",
@@ -41,19 +41,18 @@
     {
         "imgSrc": "assets/Images/Demon Slayer.jpg",
         "altText": "Third slide",
-        "spotlight": "Spotlight #1",
-        "title": "One Piece",
+        "spotlight": "Spotlight #3",
+        "title": "Demon Slayer: Kimetsu no Yaiba Hashira...",
         "infoList": [
             {"imgSrc": "assets/Images/TV .png", "text": "TV"},
-            {"imgSrc": "assets/Images/length of video.png", "text": "24 min"},
-            {"imgSrc": "assets/Images/Time of release.png", "text": "Oct 20, 1999"},
+            {"imgSrc": "assets/Images/length of video.png", "text": "28 min"},
+            {"imgSrc": "assets/Images/Time of release.png", "text": "May 12, 2024"},
             {"type": "nested", "list": [
                 {"text": "HD"},
-                {"imgSrc": "assets/Images/subtitles.png", "text": "1108"},
-                {"imgSrc": "assets/Images/microphone.png", "text": "1073"}
+                {"imgSrc": "assets/Images/subtitles.png", "text": "5"}
             ]}
         ],
-        "description": "Barely surviving in a barrel after passing through a terrible whirlpool at sea, carefree Monkey D. Luffy ends up aboard a ship under attack by fearsome pirates. Despite being a naive-looking teenager, he is not to be underestimated. Unmatched in batt...",
+        "description": "New season Kimetsu no Yaiba",
         "watchButtonImgSrc": "assets/Images/watch now anime.png",
         "watchButtonText": "Watch now"
     }

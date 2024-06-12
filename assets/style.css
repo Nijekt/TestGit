@@ -19,8 +19,12 @@
   
 body{
     font-family: "Montserrat", sans-serif;
+    background-color: #1A2130;
+    color: #ffff;
 }
-
+ul{
+    margin-bottom: 0;
+}
 
 /* header */
 .header-contain{
@@ -64,7 +68,7 @@ body{
 }
 
 .header-contain.scrolled {
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: #1a2130e5; 
     transition: background-color 0.3s ease;
 
 }
@@ -85,7 +89,7 @@ body{
 /* carousel */
 .carousel {
     width: 100%; 
-    height: 40vw; 
+    height: 623px; 
     overflow: hidden; 
 }
 .carousel img {
@@ -106,7 +110,8 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, black,rgba(255, 255, 255, 0.1));
+    background: #1A213099;
+                
     pointer-events: none;
 }
 .carousel-control-prev,
@@ -139,9 +144,10 @@ body{
     font-weight: 700;
 }
 .carousel-title{
-    max-width: 600px;
+    max-width: 690px;
     font-size: 56px;
     font-weight: 700;
+    line-height: 68.26px;
 }
 .three-inf-boxes{
     width: fit-content;
@@ -165,6 +171,7 @@ body{
 .anime-inf-list{
     display: flex;
     gap: 20px;
+    margin-bottom: 21px;
 }
 
 .main-slider-anime-information-list img{
@@ -202,6 +209,12 @@ body{
 .anime-slider-desk{
     font-size: 14px;
     max-width: 770px;
+    line-height: 17.07px;
+    font-weight: 400;
+}
+
+.carousel-item .container-1{
+    padding: 0px 60px 0px 60px;
 }
 
 
@@ -292,7 +305,7 @@ body{
 }
 .scrollbar-wrapper{
     position: relative;
-    background-color: black;
+    background-color: #3B4866;
     width: 95%;
     height: 5px;
     border-radius: 10px;
@@ -305,7 +318,7 @@ body{
     left: 0;
     height: 4px;
     width: 10%;
-    background-color: blue;
+    background-color: #83B4FF;
     position: absolute;
     border-radius: 10px;
     
@@ -319,4 +332,48 @@ body{
     transform: scale(200%);
     cursor: pointer;
     user-select: none;
+    color: #8D9FC2;
+}
+
+
+
+/* New anime */
+.new-added h3{
+    margin-bottom: 0;
+}
+.new-top{
+    display: flex;
+}
+.new-top .container-1{
+    display: flex;
+    gap: 15px;
+}
+.new-added{
+
+}
+.another-color:nth-child(2n) {
+    background-color: #1C2639;
+}
+.another-color:nth-child(2n+1) {
+    background-color: #3B4866;
+}
+
+.new-added-anime{
+    display: flex;
+    gap: 15px;
+    width: 430px;
+    height: 240px;
+    padding: 20px;
+}
+
+
+.new-added-anime-desk-list{
+    display: flex;
+    gap: 10px;
+}
+
+.new-added-anime-element{
+    display: flex;
+    align-items: center;
+    gap: 3.5px;
 }
