@@ -1,0 +1,60 @@
+[
+    {
+        "imgSrc": "assets/Images/One piece.jpg",
+        "altText": "First slide",
+        "spotlight": "Spotlight #1",
+        "title": "One Piece",
+        "infoList": [
+            {"imgSrc": "assets/Images/TV .png", "text": "TV"},
+            {"imgSrc": "assets/Images/length of video.png", "text": "24 min"},
+            {"imgSrc": "assets/Images/Time of release.png", "text": "Oct 20, 1999"},
+            {"type": "nested", "list": [
+                {"text": "HD"},
+                {"imgSrc": "assets/Images/subtitles.png", "text": "1108"},
+                {"imgSrc": "assets/Images/microphone.png", "text": "1073"}
+            ]}
+        ],
+        "description": "Barely surviving in a barrel after passing through a terrible whirlpool at sea, carefree Monkey D. Luffy ends up aboard a ship under attack by fearsome pirates. Despite being a naive-looking teenager, he is not to be underestimated. Unmatched in batt...",
+        "watchButtonImgSrc": "assets/Images/watch now anime.png",
+        "watchButtonText": "Watch now"
+    },
+    {
+        "imgSrc": "assets/Images/My hero academy.jpg",
+        "altText": "Second slide",
+        "spotlight": "Spotlight #2",
+        "title": "My Hero Academia Season 7",
+        "infoList": [
+            {"imgSrc": "assets/Images/TV .png", "text": "TV"},
+            {"imgSrc": "assets/Images/length of video.png", "text": "23 min"},
+            {"imgSrc": "assets/Images/Time of release.png", "text": "May 04, 2024"},
+            {"type": "nested", "list": [
+                {"text": "HD"},
+                {"imgSrc": "assets/Images/subtitles.png", "text": "5"},
+                {"imgSrc": "assets/Images/microphone.png", "text": "3"}
+            ]}
+        ],
+        "description": "Seventh season of Boku no Hero Academia...",
+        "watchButtonImgSrc": "assets/Images/watch now anime.png",
+        "watchButtonText": "Watch now"
+        
+    },
+    {
+        "imgSrc": "assets/Images/Demon Slayer.jpg",
+        "altText": "Third slide",
+        "spotlight": "Spotlight #1",
+        "title": "One Piece",
+        "infoList": [
+            {"imgSrc": "assets/Images/TV .png", "text": "TV"},
+            {"imgSrc": "assets/Images/length of video.png", "text": "24 min"},
+            {"imgSrc": "assets/Images/Time of release.png", "text": "Oct 20, 1999"},
+            {"type": "nested", "list": [
+                {"text": "HD"},
+                {"imgSrc": "assets/Images/subtitles.png", "text": "1108"},
+                {"imgSrc": "assets/Images/microphone.png", "text": "1073"}
+            ]}
+        ],
+        "description": "Barely surviving in a barrel after passing through a terrible whirlpool at sea, carefree Monkey D. Luffy ends up aboard a ship under attack by fearsome pirates. Despite being a naive-looking teenager, he is not to be underestimated. Unmatched in batt...",
+        "watchButtonImgSrc": "assets/Images/watch now anime.png",
+        "watchButtonText": "Watch now"
+    }
+]
