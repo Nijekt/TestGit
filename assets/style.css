@@ -428,10 +428,32 @@ ul{
 .estimated-schedule{
     display: flex;
     width: 828px;
+    flex-direction: column;
 }
 .most-viewed{
     width: 432px;
 }
 .estimated-schedule-header{
     display: flex;
+}
+.date-carousel{
+    display: flex;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: hidden; 
+    /* width: calc((106px * 7) + (6px * 7)); */
+    width: 100%;
+    white-space: nowrap;
+    padding: 0 45px 0 45px;
+}
+.date-cell{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 106px;
+    height: 61px;
+    background-color: #3B4866;
+    justify-content: center;
+    border-radius: 12px;
+    min-width: 106px;
 }
