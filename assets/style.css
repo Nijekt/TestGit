@@ -241,7 +241,7 @@ ul{
     flex-wrap: nowrap; 
     overflow-x: hidden; 
     /* padding: 10px; */
-    gap: 10px;
+    gap: 16px;
     cursor: pointer;
 }
 .anime-link:active{
@@ -258,7 +258,7 @@ ul{
 .anime {
     flex: 0 0 auto; 
     display: block;
-    max-width: 230px;
+    max-width: 251px;
     text-overflow: ellipsis;
 }
 
@@ -267,7 +267,7 @@ ul{
     height: auto; 
     object-fit: cover;
     object-position: center;
-    min-width: 230px;
+    min-width: 251px;
     min-height: 320px;
     max-height: 320px;
 }
@@ -351,10 +351,16 @@ ul{
 .new-added{
 
 }
-.another-color:nth-child(2n) {
+.new-another-color{
+    background-color: #3B4866;
+}
+/* .another-color:nth-child(1){
+    background-color: #1C2639;
+} */
+.another-color:nth-child(2n+1) {
     background-color: #1C2639;
 }
-.another-color:nth-child(2n+1) {
+.another-color:nth-child(2n) {
     background-color: #3B4866;
 }
 
@@ -366,14 +372,66 @@ ul{
     padding: 20px;
 }
 
+.new-added-1{
+    padding: 16px 20px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.mini-elipse{
+    width: 16px;
+    height: 16px;
+}
+.new-added-anime img{
+    width: 140px;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.view-more{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
 
 .new-added-anime-desk-list{
     display: flex;
     gap: 10px;
 }
-
+.new-added-anime-name{
+    font-size: 19px;
+    font-weight: 700;
+    color: #FDFFE2;
+}
 .new-added-anime-element{
     display: flex;
     align-items: center;
     gap: 3.5px;
+    
+}
+
+.view-more .chevron{
+    position: relative;
+    top: -2px;
+}
+
+/* Estimated schedule */
+.schedule-rate{
+    display: flex;
+    gap: 60px;
+}
+.schedule-rate h2{
+    margin-bottom: 0;
+}
+.estimated-schedule{
+    display: flex;
+    width: 828px;
+}
+.most-viewed{
+    width: 432px;
+}
+.estimated-schedule-header{
+    display: flex;
 }
