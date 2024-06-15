@@ -568,6 +568,10 @@ ul{
     background-color: #3B4866;
     text-align: center;
     padding: 10px 0;
+    cursor: pointer;
+}
+.day-week-month-element.active{
+    background-color: #5A72A0;
 }
 .day{
     width: 130px;
@@ -605,9 +609,11 @@ ul{
     font-weight: 600;
     padding-bottom: 15px;
     line-height: 19.5px;
+    max-width: 250px;
 }
 .counter{
     width: 20%;
+    min-width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -616,6 +622,8 @@ ul{
     text-decoration: underline;
 }
 .most-viewed-anime img{
+    min-width: 70px;
+    max-width: 70px;
     width: 70px;
     height: 90px;
 }
@@ -631,6 +639,8 @@ ul{
     } */
 .likes-views img{
     width: 18px;
+    min-width: 18px;
+    max-width: 18px;
     height: 18px;
 }
 
