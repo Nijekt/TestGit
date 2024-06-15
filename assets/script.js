@@ -53,7 +53,7 @@ async function fetchTopTrendingAnime() {
 function displayTopTrendingAnime(animeList) {
     const animeListDiv = document.getElementById('anime-list');
     animeListDiv.innerHTML = ''; // Очистить предыдущие результаты
-    animeList.forEach(anime => {
+    animeList.forEach((anime,index) => {
         const animeDiv = document.createElement('div');
         animeDiv.classList.add('anime');
 
@@ -70,7 +70,14 @@ function displayTopTrendingAnime(animeList) {
         
         const titleDiv = document.createElement('div');
         titleDiv.classList.add('title');
-        titleDiv.textContent = anime.title.english || anime.title.romaji || anime.title.native;
+        const formattedIndex = String(index + 1).padStart(2, '0');
+        const indexSpan = document.createElement("span")
+        indexSpan.textContent = `${formattedIndex}`;
+        // titleDiv.textContent = `${formattedIndex}. ${anime.title.english || anime.title.romaji || anime.title.native}`;
+        const titleText = document.createTextNode(` ${anime.title.english || anime.title.romaji || anime.title.native}`);
+        
+        titleDiv.appendChild(indexSpan);
+        titleDiv.appendChild(titleText);
         
         const scoreDiv = document.createElement('div');
         scoreDiv.classList.add('score');

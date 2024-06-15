@@ -281,7 +281,15 @@ ul{
     padding: 13px 10px;
     font-weight: 700;
     font-size: 18px;
+    gap: 10px;
 }
+
+.anime-details .title span{
+    font-size: 28px;
+    color: #8D9FC2;
+    margin-right: 10px;
+}
+
 .anime-details{
     color: #ffff;
     background: linear-gradient(90deg, #3B4866 9.09%, #8D9FC2 105.02%);
@@ -346,11 +354,12 @@ ul{
 }
 .new-top{
     display: flex;
+    justify-content: space-between;
 }
-.new-top .container-1{
+/* .new-top .container-1{
     display: flex;
     gap: 15px;
-}
+} */
 .new-added{
 
 }
