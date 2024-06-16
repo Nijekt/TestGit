@@ -260,6 +260,8 @@ ul{
     display: block;
     max-width: 251px;
     text-overflow: ellipsis;
+    position: relative;
+    overflow: hidden;
 }
 
 .anime img {
@@ -346,6 +348,21 @@ ul{
     color: #8D9FC2;
 }
 
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+    pointer-events: none; /* Чтобы tooltip не перехватывал события мыши */
+    bottom: 100%; /* Показать tooltip над элементом */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap; /* Чтобы не было переносов строки */
+    width: 200px; /* Ширина tooltip, можно регулировать по необходимости */
+}
 
 
 /* New anime */
@@ -648,4 +665,77 @@ ul{
     gap: 15px;
     display: flex;
     font-size: 12px;
+}
+
+
+/* Recently updated */
+.recently-updated-content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.recently-updated-card{
+    min-width: 207px;
+    max-width: 207px;
+    background-color: #3B4866;
+    position: relative;
+}
+
+.recently-updated-card img{
+    min-width: 207px;
+    max-width: 207px;
+    max-height: 280px;
+    min-height: 280px;
+    position: relative;
+}
+/* .recently-updated-card::after{
+    content: "1181 eps";
+    width: 58px;
+    height: 23px;
+    background-color: #8D9FC2;
+    bottom: 74px;
+    right: 5px;
+    position: absolute;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    align-items: center;
+} */
+
+.card-episods{
+    width: 58px;
+    height: 23px;
+    background-color: #8D9FC2;
+    bottom: 74px;
+    right: 5px;
+    position: absolute;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    align-items: center;
+}
+.recently-card-information{
+    padding: 12px 15px;
+}
+
+.rec-card-desk{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #8D9FC2;
+    font-size: 14px;
+}
+
+.dot{
+    width: 5px;
+    height: 5px;
+    border-radius: 20px;
+    background-color: #8D9FC2;
+}
+
+.card-anime-title{
+    font-size: 16px;
+    font-weight: 600;
 }

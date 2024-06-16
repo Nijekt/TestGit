@@ -1,13 +1,12 @@
 const header = document.querySelector('.header-contain');
 
-window.addEventListener("scroll", function(){
+window.addEventListener("scroll", function() {
     if (window.scrollY > 10) {
-        header.classList.add("scrolled")
-    }
-    else {
+        header.classList.add("scrolled");
+    } else {
         header.classList.remove('scrolled');
-      }
-})
+    }
+});
 
 async function fetchTopTrendingAnime() {
     const query = `
@@ -53,7 +52,8 @@ async function fetchTopTrendingAnime() {
 function displayTopTrendingAnime(animeList) {
     const animeListDiv = document.getElementById('anime-list');
     animeListDiv.innerHTML = ''; // Очистить предыдущие результаты
-    animeList.forEach((anime,index) => {
+
+    animeList.forEach((anime, index) => {
         const animeDiv = document.createElement('div');
         animeDiv.classList.add('anime');
 
@@ -67,30 +67,44 @@ function displayTopTrendingAnime(animeList) {
 
         const detailsDiv = document.createElement('div');
         detailsDiv.classList.add('anime-details');
-        
+
         const titleDiv = document.createElement('div');
         titleDiv.classList.add('title');
         const formattedIndex = String(index + 1).padStart(2, '0');
         const indexSpan = document.createElement("span")
         indexSpan.textContent = `${formattedIndex}`;
-        // titleDiv.textContent = `${formattedIndex}. ${anime.title.english || anime.title.romaji || anime.title.native}`;
         const titleText = document.createTextNode(` ${anime.title.english || anime.title.romaji || anime.title.native}`);
-        
+
         titleDiv.appendChild(indexSpan);
         titleDiv.appendChild(titleText);
-        
-        const scoreDiv = document.createElement('div');
-        scoreDiv.classList.add('score');
-        scoreDiv.textContent = `Score: ${anime.meanScore}, Popularity: ${anime.popularity}`;
 
         detailsDiv.appendChild(titleDiv);
-        // detailsDiv.appendChild(scoreDiv);
 
         animeLink.appendChild(image);
         animeLink.appendChild(detailsDiv);
 
         animeDiv.appendChild(animeLink);
         animeListDiv.appendChild(animeDiv);
+
+        // Создаем всплывающее окно (tooltip)
+        const tooltip = document.createElement('div');
+        tooltip.classList.add('tooltip');
+        tooltip.innerHTML = `
+            <h3>${anime.title.english || anime.title.romaji || anime.title.native}</h3>
+            <p>Score: ${anime.meanScore}</p>
+            <p>Popularity: ${anime.popularity}</p>
+            <p>Genres: ${anime.genres.join(', ')}</p>
+        `;
+        animeDiv.appendChild(tooltip);
+
+        // Добавляем обработчики для показа и скрытия tooltip
+        animeDiv.addEventListener('mouseenter', () => {
+            tooltip.style.display = 'block';
+        });
+
+        animeDiv.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
 
         // Prevent link click if dragging
         animeLink.addEventListener('click', (e) => {
@@ -103,7 +117,6 @@ function displayTopTrendingAnime(animeList) {
 
 // Вызов функции для получения топа аниме по трендам
 fetchTopTrendingAnime();
-
 
 const animeCarousel = document.querySelector(".anime-list");
 const animeScroll = document.querySelector(".scroll-bar");
@@ -157,7 +170,7 @@ function scrollDrag() {
 
     // Ensure the scrollbar does not exceed bounds
     scrollPosition = Math.max(0, Math.min(scrollPosition, maxScrollbarLeft));
-    
+
     animeScroll.style.left = `${scrollPosition}px`;
     console.log(scrollPosition);
 }
@@ -178,7 +191,6 @@ window.addEventListener("mousemove", scrollbarDragging);
 window.addEventListener("mouseup", draggingStop);
 window.addEventListener("mouseleave", draggingStop);
 
-
 animeCarousel.addEventListener('scroll', scrollDrag);
 
 function getAnimeWidth() {
@@ -187,15 +199,11 @@ function getAnimeWidth() {
 }
 
 prevButton.addEventListener('click', () => {
-    console.log("Hello")
     const animeWidth = getAnimeWidth();
     animeCarousel.scrollBy({ left: -animeWidth, behavior: 'smooth' }); // Scroll back by one image width
-
 });
 
 nextButton.addEventListener('click', () => {
     const animeWidth = getAnimeWidth();
     animeCarousel.scrollBy({ left: animeWidth, behavior: 'smooth' }); // Scroll forward by one image width
-
 });
-

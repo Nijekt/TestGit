@@ -3,19 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('most-viewed-anime-container');
     const periodButtons = document.querySelectorAll('.day-week-month-element');
   
-    // Добавляем обработчики событий для кнопок
+    
     periodButtons.forEach(button => {
       button.addEventListener('click', () => {
         const period = button.dataset.period;
         fetchMostViewedAnime(period);
   
-        // Удаляем класс 'active' со всех кнопок и добавляем к текущей
+
         periodButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
       });
     });
   
-    // Функция для получения данных с Anilist API
+
     async function fetchMostViewedAnime(period) {
       const query = `
         query ($sort: [MediaSort], $type: MediaType) {
