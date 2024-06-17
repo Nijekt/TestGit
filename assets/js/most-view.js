@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = 'https://graphql.anilist.co';
     const container = document.getElementById('most-viewed-anime-container');
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
               id
               title {
                 english
+                romaji
               }
               coverImage {
                 large
@@ -67,13 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
       animeList.forEach((anime, index) => {
         const animeElement = document.createElement('div');
         animeElement.classList.add('most-viewed-anime');
-  
+        const truncatedTitle = truncateString(anime.title.romaji,30);
         animeElement.innerHTML = `
           <div class="counter">${String(index + 1).padStart(2, '0')}</div>
           <div class="most-viewed-anime-element">
             <img src="${anime.coverImage.large}" alt="${anime.title.english}">
             <div class="most-viewed-anime-element-content">
-              <div class="most-viewed-anime-title">${anime.title.english}</div>
+              <div class="most-viewed-anime-title">${truncatedTitle}</div>
               <div class="likes-views">
                 <div class="views">
                   <img src="assets/Images/eye.png" alt="">
@@ -97,3 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.day-week-month-element.day').classList.add('active');
   });
   
+
+  function truncateString(str, maxLength) {
+    if (str.length > maxLength) {
+      return str.slice(0, maxLength) + '...';
+    } else {
+      return str;
+    }
+  }

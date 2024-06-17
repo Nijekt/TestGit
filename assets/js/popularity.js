@@ -134,7 +134,8 @@ fetch(apiUrl, options)
       const truncatedTitle = truncateString(anime.title.romaji, 10);
   
       card.innerHTML = `
-        <img src="${anime.coverImage.large}" alt="">
+        <a href="https://anilist.co/anime/${anime.id}">
+        <img src="${anime.coverImage.large}" alt=""></a>
         <div class="card-episods">${anime.episodes} EPS</div>
         <div class="recently-card-information">
           <div class="card-anime-title">${truncatedTitle}</div>

@@ -25,6 +25,12 @@ async function fetchTopTrendingAnime() {
                         large
                     }
                     genres
+                    status
+                    startDate {
+                        year
+                        month
+                        day
+                    }
                 }
             }
         }
@@ -56,37 +62,36 @@ function displayTopTrendingAnime(animeList) {
     animeList.forEach((anime, index) => {
         const animeDiv = document.createElement('div');
         animeDiv.classList.add('anime');
-
+    
         const animeLink = document.createElement('a');
         animeLink.href = `https://anilist.co/anime/${anime.id}`; // Предполагается, что у вас есть ID аниме
         animeLink.classList.add('anime-link'); // Добавьте класс для управления стилями ссылок
-
+    
         const image = document.createElement('img');
         image.src = anime.coverImage.large;
         image.alt = anime.title.english || anime.title.romaji || anime.title.native;
-
+    
         const detailsDiv = document.createElement('div');
         detailsDiv.classList.add('anime-details');
-
+    
         const titleDiv = document.createElement('div');
         titleDiv.classList.add('title');
         const formattedIndex = String(index + 1).padStart(2, '0');
         const indexSpan = document.createElement("span")
         indexSpan.textContent = `${formattedIndex}`;
         const titleText = document.createTextNode(` ${anime.title.english || anime.title.romaji || anime.title.native}`);
-
+    
         titleDiv.appendChild(indexSpan);
         titleDiv.appendChild(titleText);
-
+    
         detailsDiv.appendChild(titleDiv);
-
+    
         animeLink.appendChild(image);
         animeLink.appendChild(detailsDiv);
-
+    
         animeDiv.appendChild(animeLink);
         animeListDiv.appendChild(animeDiv);
-
-        // Создаем всплывающее окно (tooltip)
+    
         const tooltip = document.createElement('div');
         tooltip.classList.add('tooltip');
         tooltip.innerHTML = `
@@ -96,16 +101,16 @@ function displayTopTrendingAnime(animeList) {
             <p>Genres: ${anime.genres.join(', ')}</p>
         `;
         animeDiv.appendChild(tooltip);
-
-        // Добавляем обработчики для показа и скрытия tooltip
+    
         animeDiv.addEventListener('mouseenter', () => {
             tooltip.style.display = 'block';
         });
-
+    
         animeDiv.addEventListener('mouseleave', () => {
             tooltip.style.display = 'none';
         });
-
+    
+        animeDiv.appendChild(tooltip)
         // Prevent link click if dragging
         animeLink.addEventListener('click', (e) => {
             if (isDragging) {
@@ -113,6 +118,7 @@ function displayTopTrendingAnime(animeList) {
             }
         });
     });
+    
 }
 
 // Вызов функции для получения топа аниме по трендам
@@ -172,7 +178,6 @@ function scrollDrag() {
     scrollPosition = Math.max(0, Math.min(scrollPosition, maxScrollbarLeft));
 
     animeScroll.style.left = `${scrollPosition}px`;
-    console.log(scrollPosition);
 }
 
 function draggingStop() {
