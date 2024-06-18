@@ -41,6 +41,9 @@ ul{
 }
 .header-title{
     font-weight: 700;
+    padding: 10px;
+    background-color: #8D9FC2;
+    font-size: 19px;
 }
 .header-contain ul{
     margin-bottom: 0;
@@ -811,4 +814,21 @@ ul{
 .card-anime-title{
     font-size: 16px;
     font-weight: 600;
+}
+
+
+/* login screen */
+
+.login-screen{
+    width: 522px;
+    height: 575px;
+    background-color: #5A72A0;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    z-index: 10;
+}
+
+.login-screen.hide{
+    display: none;
 }

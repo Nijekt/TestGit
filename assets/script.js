@@ -1,3 +1,25 @@
+class MyHeader extends HTMLElement{
+    connectedCallback(){
+        this.innerHTML = `
+              <div class="header-contain">
+                    <ul class="header-list">
+                    <li class="header-title header-element"><a href="index.html">HuYUTSu</a></li>
+                    <li class="header-element">Anime</li>
+                    <li class="header-element">Random Anime</li>
+                    </ul>
+                    <div class="header-list-2">
+                    <input type="text" class="header-element" placeholder="Search anime...">
+                    <div class="login">Login</div>
+                    </div>
+                </div>
+                    <div class="login-screen"> </div>
+        `
+    }
+}
+
+customElements.define('my-header', MyHeader)
+
+
 const header = document.querySelector('.header-contain');
 
 window.addEventListener("scroll", function() {

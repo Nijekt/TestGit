@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anilibria Player</title>
+</head>
+<body>
+    <h1>Список релизов Anilibria</h1>
+    <ul id="release-list"></ul>
+    
+    <h2>Плеер</h2>
+    <video id="anilibria-player" controls>
+        <source id="anilibria-source" src="" type="application/x-mpegURL">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        async function getTitles() {
+            const url = 'https://api.anilibria.tv/v2/getTitles';
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        filter: {},
+                        sort: 'updated'
+                    })
+                });
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.list;
+            } catch (error) {
+                console.error(error);
+                return [];
+            }
+        }
+
+        async function getTitleInfo(titleId) {
+            const url = `https://api.anilibria.tv/v2/getTitle?id=${titleId}`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+
+        async function loadVideo(titleId) {
+            const titleInfo = await getTitleInfo(titleId);
+            if (titleInfo && titleInfo.player && titleInfo.player.playlist && titleInfo.player.playlist.length > 0) {
+                const player = document.getElementById('anilibria-player');
+                const source = document.getElementById('anilibria-source');
+                // Пример использования первой доступной ссылки
+                source.src = titleInfo.player.playlist[0].hls;
+                player.load();
+            } else {
+                console.error('No valid playlist found or invalid title info');
+            }
+        }
+
+        async function displayReleases() {
+            const releases = await getTitles();
+            const releaseList = document.getElementById('release-list');
+            releases.forEach(release => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${release.names.ru}`;
+                listItem.style.cursor = 'pointer';
+                listItem.onclick = () => loadVideo(release.id);
+                releaseList.appendChild(listItem);
+            });
+        }
+
+        // Отображаем список релизов при загрузке страницы
+        displayReleases();
+    </script>
+</body>
+</html>
