@@ -16,21 +16,20 @@ const query = (page) => `
           month
           day
         }
+        genres
+        status
       }
     }
   }
 `;
 
-// AniList GraphQL API endpoint
 const apiUrl = 'https://graphql.anilist.co';
 
-// Headers for the POST request
 const headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
 };
 
-// Function to fetch data from a specific page
 const fetchPage = (page) => {
   const options = {
     method: 'POST',
@@ -47,7 +46,6 @@ const fetchPage = (page) => {
     });
 };
 
-// Fetching data from multiple pages
 const fetchMultiplePages = async (totalPages) => {
   const fetchPromises = [];
   for (let page = 1; page <= totalPages; page++) {
@@ -55,13 +53,12 @@ const fetchMultiplePages = async (totalPages) => {
   }
 
   const results = await Promise.all(fetchPromises);
-  return results.flat(); // Flatten the array of arrays
+  return results.flat();
 };
 
-// Update HTML based on retrieved data and current page
 function updateAnimeList(animeList, currentPage = 1, itemsPerPage = 16) {
   const animeContainer = document.getElementById('popular-anime-list');
-  animeContainer.innerHTML = ''; // Clear previous content
+  animeContainer.innerHTML = ''; 
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -71,7 +68,6 @@ function updateAnimeList(animeList, currentPage = 1, itemsPerPage = 16) {
     const card = document.createElement('div');
     card.classList.add('recently-updated-card');
 
-    // Truncate the anime title to 10 characters
     const truncatedTitle = truncateString(anime.title.romaji, 10);
 
     card.innerHTML = `
@@ -90,25 +86,19 @@ function updateAnimeList(animeList, currentPage = 1, itemsPerPage = 16) {
     animeContainer.appendChild(card);
   });
 
-  // Update carousel indicators
   updateCarouselIndicators(animeList.length, currentPage, itemsPerPage);
 }
 
 function truncateString(str, maxLength) {
-  if (str.length > maxLength) {
-    return str.slice(0, maxLength) + '...';
-  } else {
-    return str;
-  }
+  return str.length > maxLength ? str.slice(0, maxLength) + '...' : str;
 }
 
-// Update carousel indicators
 function updateCarouselIndicators(totalItems, currentPage, itemsPerPage) {
   const indicatorsContainer = document.getElementById('carousel-indicators');
-  indicatorsContainer.innerHTML = ''; // Clear previous content
+  indicatorsContainer.innerHTML = '';
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const maxVisibleIndicators = 5; // Max number of indicators to show at once
+  const maxVisibleIndicators = 5;
   const startPage = Math.max(1, Math.min(totalPages - maxVisibleIndicators + 1, currentPage - Math.floor(maxVisibleIndicators / 2)));
   const endPage = Math.min(totalPages, startPage + maxVisibleIndicators - 1);
 
@@ -127,7 +117,6 @@ function updateCarouselIndicators(totalItems, currentPage, itemsPerPage) {
   }
 }
 
-// Carousel controls
 let currentPage = 1;
 
 document.getElementById('prev-button').addEventListener('click', () => {
@@ -145,12 +134,63 @@ document.getElementById('next-button').addEventListener('click', () => {
   }
 });
 
-// Number of pages to fetch
-const totalPages = 10; // Adjust this number based on your needs
-
 let animeList = [];
+let filteredAnimeList = [];
+let selectedGenre = [];
+let selectedYear = [];
+let selectedType = [];
+let selectedStatus = [];
+
+const applyFilters = () => {
+  filteredAnimeList = animeList.filter(anime => {
+    const matchesGenre = selectedGenre.length ? selectedGenre.some(genre => anime.genres.includes(genre)) : true;
+    const matchesYear = selectedYear.length ? selectedYear.includes(anime.startDate.year.toString()) : true;
+
+    const matchesType = selectedType.length ? selectedType.includes(anime.format) : true;
+    const matchesStatus = selectedStatus.length ? selectedStatus.includes(anime.status) : true;
+    return matchesGenre && matchesYear && matchesType && matchesStatus;
+  });
+  updateAnimeList(filteredAnimeList, 1);
+};
+
+document.getElementById('apply-filters').addEventListener('click', applyFilters);
+
+const updateFilterSelection = (selector, filterArray) => {
+  document.querySelectorAll(selector).forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const value = checkbox.value;
+      if (checkbox.checked) {
+        filterArray.push(value);
+      } else {
+        const index = filterArray.indexOf(value);
+        if (index > -1) {
+          filterArray.splice(index, 1);
+        }
+      }
+    });
+  });
+};
+
+updateFilterSelection('#year-options input', selectedYear);
+updateFilterSelection('#genre-options input', selectedGenre);
+updateFilterSelection('#type-options input', selectedType);
+updateFilterSelection('#status-options input', selectedStatus);
+
+document.querySelectorAll('.filter-category h4').forEach(header => {
+  header.addEventListener('click', () => {
+    const content = header.nextElementSibling;
+    if (content.style.display === 'block') {
+      content.style.display = 'none';
+    } else {
+      content.style.display = 'block';
+    }
+  });
+});
+
+const totalPages = 10;
 
 fetchMultiplePages(totalPages).then(data => {
   animeList = data;
+  filteredAnimeList = animeList;
   updateAnimeList(animeList, currentPage);
 });

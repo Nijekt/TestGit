@@ -827,6 +827,7 @@ ul{
     top: 10%;
     left: 30%;
     z-index: 10;
+    position: fixed;
 }
 
 .login-screen.hide{

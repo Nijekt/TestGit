@@ -12,7 +12,7 @@ class MyHeader extends HTMLElement{
                     <div class="login">Login</div>
                     </div>
                 </div>
-                    <div class="login-screen"> </div>
+                    <div class="login-screen hide"> </div>
         `
     }
 }
@@ -79,7 +79,7 @@ async function fetchTopTrendingAnime() {
 
 function displayTopTrendingAnime(animeList) {
     const animeListDiv = document.getElementById('anime-list');
-    animeListDiv.innerHTML = ''; // Очистить предыдущие результаты
+    animeListDiv.innerHTML = ''; 
 
     animeList.forEach((anime, index) => {
         const animeDiv = document.createElement('div');

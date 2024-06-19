@@ -18,12 +18,132 @@
           </div>
           
         </div>
-        <div class="filter">
-            
+        <!-- <div class="filter">
             <div class="title-filter"><img src="assets/Images/settings.png" alt="">Filter</div>
+            <div class="filter-options">
+                <div>
+                    <label for="genre-filter">Genre:</label>
+                    <select id="genre-filter">
+                        <option value="">All</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Comedy">Comedy</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="year-filter">Year:</label>
+                    <input type="number" id="year-filter" min="1900" max="2100" step="1">
+                </div>
+                <div>
+                    <label for="type-filter">Type:</label>
+                    <select id="type-filter">
+                        <option value="">All</option>
+                        <option value="TV">TV</option>
+                        <option value="OVA">OVA</option>
+                        <option value="ONA">ONA</option>
+                        <option value="Movie">Movie</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="">All</option>
+                        <option value="Finished">Finished</option>
+                        <option value="Releasing">Releasing</option>
+                        <option value="Not yet released">Not yet released</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <button id="apply-filters">Apply Filters</button>
+            </div>
+        </div> -->
+        <div class="filter">
+            <div class="title-filter"><img src="assets/Images/settings.png" alt="">Filter</div>
+            <div class="filter-section">
+                <div class="filter-category" id="year-filter">
+                    <h4>Select year</h4>
+                    <div class="filter-content">
+                        <div class="filter-options" id="year-options">
+                            <!-- Add checkboxes for years here -->
+                            <label><input type="checkbox" value="2024"> 2024</label>
+                            <label><input type="checkbox" value="2015"> 2015</label>
+                            <label><input type="checkbox" value="2006"> 2006</label>
+                            <label><input type="checkbox" value="1997"> 1997</label>
+                            <label><input type="checkbox" value="2023"> 2023</label>
+                            <label><input type="checkbox" value="2014"> 2014</label>
+                            <label><input type="checkbox" value="2005"> 2005</label>
+                            <label><input type="checkbox" value="1996"> 1996</label>
+                            <label><input type="checkbox" value="2022"> 2022</label>
+                            <label><input type="checkbox" value="2013"> 2013</label>
+                            <label><input type="checkbox" value="2004"> 2004</label>
+                            <label><input type="checkbox" value="1995"> 1995</label>
+                            <label><input type="checkbox" value="2021"> 2021</label>
+                            <label><input type="checkbox" value="2012"> 2012</label>
+                            <label><input type="checkbox" value="2003"> 2003</label>
+                            <label><input type="checkbox" value="1994"> 1994</label>
+                            <label><input type="checkbox" value="2020"> 2020</label>
+                            <label><input type="checkbox" value="2011"> 2011</label>
+                            <label><input type="checkbox" value="2002"> 2002</label>
+                            <label><input type="checkbox" value="1993"> 1993</label>
+                            <label><input type="checkbox" value="2019"> 2019</label>
+                            <label><input type="checkbox" value="2010"> 2010</label>
+                            <label><input type="checkbox" value="2001"> 2001</label>
+                            <label><input type="checkbox" value="1992"> 1992</label>
+                            <label><input type="checkbox" value="2018"> 2018</label>
+                            <label><input type="checkbox" value="2009"> 2009</label>
+                            <label><input type="checkbox" value="2000"> 2000</label>
+                            <label><input type="checkbox" value="1991"> 1991</label>
+                            <label><input type="checkbox" value="2017"> 2017</label>
+                            <label><input type="checkbox" value="2008"> 2008</label>
+                            <label><input type="checkbox" value="1999"> 1999</label>
+                            <label><input type="checkbox" value="1990"> 1990</label>
+                            <label><input type="checkbox" value="2016"> 2016</label>
+                            <label><input type="checkbox" value="2007"> 2007</label>
+                            <label><input type="checkbox" value="1998"> 1998</label>
+                            <label><input type="checkbox" value="1989"> 1989</label>
+
+                            <!-- Repeat for other years -->
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-category" id="genre-filter">
+                    <h4>Select genre</h4>
+                    <div class="filter-content">
+                        <div class="filter-options" id="genre-options">
+                            <!-- Add checkboxes for genres here -->
+                            <label><input type="checkbox" value="Action"> Action</label>
+                            <label><input type="checkbox" value="Adventure"> Adventure</label>
+                            <!-- Repeat for other genres -->
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-category" id="type-filter">
+                    <h4>Select type</h4>
+                    <div class="filter-content">
+                        <div class="filter-options" id="type-options">
+                            <!-- Add checkboxes for types here -->
+                            <label><input type="checkbox" value="TV"> TV</label>
+                            <label><input type="checkbox" value="MOVIE"> Movie</label>
+                            <!-- Repeat for other types -->
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-category" id="status-filter">
+                    <h4>Select status</h4>
+                    <div class="filter-content">
+                        <div class="filter-options" id="status-options">
+                            <!-- Add checkboxes for statuses here -->
+                            <label><input type="checkbox" value="RELEASING"> Releasing</label>
+                            <!-- Repeat for other statuses -->
+                        </div>
+                    </div>
+                </div>
+                <button id="apply-filters">Search</button>
+            </div>
         </div>
         </div>
-    </div><div class="carousel-controls">
+    </div>
+    <div class="carousel-controls">
             <button id="prev-button" class="carousel-button">&lsaquo;</button>
             <div id="carousel-indicators" class="carousel-indicators"></div>
             <button id="next-button" class="carousel-button">&rsaquo;</button>
