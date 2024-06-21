@@ -12,7 +12,22 @@ class MyHeader extends HTMLElement{
                     <div class="login">Login</div>
                     </div>
                 </div>
-                    <div class="login-screen hide"> </div>
+                    <div class="login-screen hide">
+                        <div class="login-content">
+                            <div class="welcome">Welcome back!</div>
+                            <div class="email">
+                            <h4>EMAIL ADDRES:</h4>
+                            <input type="email" placeholder="name@email.com"/>
+                            </div>
+                            <div class="password">  
+                            <h4>PASSWORD:</h4>
+                            <input type="password" name="" id="" placeholder="Password" />
+                            </div>
+                            <div class="remember"></div>
+                            // <button className="login-button"></button>
+                            <div class="register-acc"></div>
+                        </div>
+                    </div>
         `
     }
 }

@@ -822,14 +822,58 @@ ul{
 .login-screen{
     width: 522px;
     height: 575px;
-    background-color: #5A72A0;
+    background: #1C2639;
+    border: 1px solid #3B4866;
     position: absolute;
     top: 10%;
     left: 30%;
     z-index: 10;
     position: fixed;
+    /* transform: translate(50%,50%); */
+    /* transition:opacity 1s ease; */
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    box-shadow: 0px 4px 72px 0px #00000040 inset;
 }
 
 .login-screen.hide{
     display: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+     user-select: none;
+     pointer-events: none;
+}
+
+.login-screen input{
+    margin-top: 10px;
+    background-color: #ffff;
+    color: #8D9FC2;
+    width: 350px;
+    height: 44px;
+    border-radius: 8px;
+    padding: 0 16px;
+
+}
+
+.login-content{
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+}
+
+.password, .email{
+    color: #FDFFE2;
+}
+.password{
+    padding-top: 5px;
+}
+.welcome{
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    padding-bottom: 50px;
 }
