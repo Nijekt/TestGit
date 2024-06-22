@@ -877,3 +877,28 @@ ul{
     font-weight: 700;
     padding-bottom: 50px;
 }
+
+.remember{
+    display: flex;
+
+}
+
+.remem-check{
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 20px;
+    border-radius: 120px;
+    background-color: #FFFF;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+.rem-check{
+    width: 18px;
+    height: 18px;
+    background-color: #3B4866;
+    border-radius: 120px;
+    position: absolute;
+    left: 5%;
+    transition: left 0.3s ease,background-color 0.3s ease;
+}

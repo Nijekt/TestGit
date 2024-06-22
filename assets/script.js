@@ -23,14 +23,24 @@ class MyHeader extends HTMLElement{
                             <h4>PASSWORD:</h4>
                             <input type="password" name="" id="" placeholder="Password" />
                             </div>
-                            <div class="remember"></div>
-                            // <button className="login-button"></button>
+                            <div class="remember">
+                            <div class="remem-check"><div class="rem-check"></div></div>
+                            <span>Do not remember</span>
+                            </div>
+                            // <button className="login-button">Login</button>
                             <div class="register-acc"></div>
                         </div>
                     </div>
         `
     }
 }
+
+// const rememberCheck = document.querySelector(".remem-check");
+// const rememCheck = document.querySelector(".rem-check");
+// rememberCheck.addEventListener("click", function(){
+//     console.log("dasdadasdads")
+// })
+
 
 customElements.define('my-header', MyHeader)
 
