@@ -212,3 +212,12 @@ input[type="checkbox"]{
 #genre-options label{
     width: 130px;
 }
+
+.screen-blur{
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 9;
+    display: none;
+}

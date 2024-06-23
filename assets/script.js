@@ -19,16 +19,46 @@ class MyHeader extends HTMLElement{
                             <h4>EMAIL ADDRES:</h4>
                             <input type="email" placeholder="name@email.com"/>
                             </div>
-                            <div class="password">  
+                            <div class="password">
+                            <div class="pass-cont">
                             <h4>PASSWORD:</h4>
+                            <h5 class="forg-pass"><a href="#">Forgot password?</a></h5>
+                            </div>
                             <input type="password" name="" id="" placeholder="Password" />
                             </div>
                             <div class="remember">
                             <div class="remem-check"><div class="rem-check"></div></div>
-                            <span>Do not remember</span>
+                            <span>Do not remember me</span>
                             </div>
-                            // <button className="login-button">Login</button>
-                            <div class="register-acc"></div>
+                            <button class="login-button">Login</button>
+                            <div class="register-acc">
+                                <span>Do not have an account?</span>
+                                <a class="reg-acc" href="#">Register</a>
+                            </div>
+                        </div>
+                        <div class="register-content">
+                            <div class="reg-welcome">Create an Account</div>
+                            <div class="username">
+                                <h4>USERNAME:</h4>
+                                <input type="text" placeholder="Username"/>
+                            </div>
+                            <div class="email">
+                                <h4>EMAIL ADDRES:</h4>
+                                <input type="email" placeholder="name@email.com"/>
+                            </div>
+                            <div class="password">  
+                                <h4>PASSWORD:</h4>
+                                <input type="password" name="" id="" placeholder="Password" />
+                            </div>
+                            <div class="password">  
+                                <h4>CONFIRM PASSWORD:</h4>
+                                <input type="password" name="" id="" placeholder="Password" />
+                            </div>
+                            <button class="reg-button">Register</button>
+                            <div class="have-acc">
+                            Have an account 
+                            <a class="log-acc" href="#">Login</a>
+                            </div>
                         </div>
                     </div>
         `
