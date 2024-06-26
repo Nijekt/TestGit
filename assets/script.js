@@ -64,6 +64,29 @@ class MyHeader extends HTMLElement{
         `
     }
 }
+class MyFooter extends HTMLElement{
+    connectedCallback(){
+        this.innerHTML = `
+        <div class="footer-contain">
+             <div class="footer-nav">
+                 <span class="footer-element-one">Anime 2024</span>                                   
+                 <span class="footer-element-two">Airing</span>                                       
+                 <span class="footer-element-three">Policy</span>                                     
+                 <span class="footer-element-four">©2024 HuYUTSu.Online admin@hututsu.online</span>   
+             </div>
+                <div class="footer-place">                                                           
+                   <span class="footer-element-five">©HuYUTSu.Online - All anime in one place (18+)</span>         
+                 </div>
+        </div>                                                                                                                                                                  
+            
+           
+              
+`
+
+
+    }
+}
+customElements.define('my-footer', MyFooter)
 
 // const rememberCheck = document.querySelector(".remem-check");
 // const rememCheck = document.querySelector(".rem-check");
